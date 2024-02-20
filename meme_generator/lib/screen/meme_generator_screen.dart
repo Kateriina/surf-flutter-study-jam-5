@@ -16,12 +16,11 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
   String imageUrl =
       'https://i.cbc.ca/1.6713656.1679693029!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/this-is-fine.jpg';
 
-  //String memeText = 'Для начала улыбнись';
   String memeText = 'Здесь мог бы быть ваш мем';
 
   void _pickImageFromGallery() async {
-    final _picker = ImagePicker();
-    XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final picker = ImagePicker();
+    XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         imageUrl = pickedFile.path;
@@ -35,7 +34,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
       builder: (BuildContext context) {
         String url = '';
         return AlertDialog(
-          title: Text('Выбрать картинку'),
+          title: const Text('Выбрать картинку'),
           content: Row(
             children: <Widget>[
               Expanded(
@@ -43,7 +42,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                   onChanged: (value) {
                     url = value;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Введите URL',
                   ),
                 ),
@@ -53,7 +52,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                   Navigator.of(context).pop();
                   _pickImageFromGallery();
                 },
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Icon(Icons.attach_file),
@@ -70,7 +69,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                 });
                 Navigator.of(context).pop();
               },
-              child: Text('Сохранить'),
+              child: const Text('Сохранить'),
             ),
           ],
         );
@@ -89,14 +88,14 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Изменить текст'),
+          title: const Text('Изменить текст'),
           content: TextField(
             onChanged: (value) {
               setState(() {
                 memeText = value;
               });
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Введите текст',
             ),
           ),
@@ -105,7 +104,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Сохранить'),
+              child: const Text('Сохранить'),
             ),
           ],
         );
@@ -114,14 +113,13 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
   }
 
   // Метод для просмотра информации о приложении
-  void _info_about() {
+  void _infoAbout() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        String url = '';
         return AlertDialog(
-          title: Text('Информация о MEMGEN'),
-          content: Column(
+          title: const Text('Информация о MEMGEN'),
+          content: const Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -138,7 +136,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Закрыть'),
+              child: const Text('Закрыть'),
             ),
           ],
         );
@@ -157,23 +155,23 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('MEMGEN'),
+        title: const Text('MEMGEN'),
         actions: [
           IconButton(
-            icon: Icon(Icons.edit),
+            icon: const Icon(Icons.edit),
             onPressed: _editText,
           ),
           IconButton(
-            icon: Icon(Icons.image),
+            icon: const Icon(Icons.image),
             onPressed: _pickImage,
           ),
           IconButton(
-            icon: Icon(Icons.share),
+            icon: const Icon(Icons.share),
             onPressed: _shareMeme,
           ),
           IconButton(
-            icon: Icon(Icons.question_mark),
-            onPressed: _info_about,
+            icon: const Icon(Icons.question_mark),
+            onPressed: _infoAbout,
           ),
         ],
       ),
@@ -227,7 +225,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                         child: Text(
                           memeText,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Impact',
                             fontSize: 40,
                             color: Colors.white,
