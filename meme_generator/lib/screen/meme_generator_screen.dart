@@ -81,10 +81,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
 
   // Метод для обмена полученным мемом
   void _shareMeme() async {
-    /*
-    final screenshot = await screenshotController.capture();
-
-    Share.shareFiles([screenshot], text: 'Проверьте этот мем!');*/
+    Share.share(img);
   }
 
   // Метод для редактирования текста мема
