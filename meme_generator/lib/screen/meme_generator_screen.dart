@@ -113,6 +113,39 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
     );
   }
 
+  // Метод для просмотра информации о приложении
+  void _info_about() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        String url = '';
+        return AlertDialog(
+          title: Text('Информация о MEMGEN'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("MemGen - то конструктор для генерации демотивирующих картинок.\n"
+                  "Для изменения текста нажмите на него или на соответствующую кнопку.\n"
+                  "Для изменения картинки нажмите на нее или на соответствующую кнопку.\n"
+                  "Картинку можно загрузить по ссылке из источника или из галереи."),
+              SizedBox(height: 10),
+              Text("© kateriina 2024"),
+            ],
+          ),
+          actions: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Закрыть'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final decoration = BoxDecoration(
@@ -124,7 +157,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Генератор мемов'),
+        title: Text('MEMGEN'),
         actions: [
           IconButton(
             icon: Icon(Icons.edit),
@@ -209,39 +242,6 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
           },
         ),
       ),
-    );
-  }
-
-  void _info_about() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        String url = '';
-        return AlertDialog(
-          title: Text('Информация о MemGen'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                  "Это конструктор для генерации картинок, позволяющий оперировать картинками и текстом.\n"
-                  "Для изменения текста нажмите на него или на соответствующую кнопку.\n"
-                  "Для изменения картинки нажмите на нее или на соответствующую кнопку.\n"
-                  "Картинку можно загрузить по ссылке из источника или из галереи."),
-              SizedBox(height: 10),
-              Text("© kateriina 2024"),
-            ],
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Закрыть'),
-            ),
-          ],
-        );
-      },
     );
   }
 }
