@@ -105,7 +105,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Ок'),
+              child: Text('Сохранить'),
             ),
           ],
         );
@@ -137,6 +137,10 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
           IconButton(
             icon: Icon(Icons.share),
             onPressed: _shareMeme,
+          ),
+          IconButton(
+            icon: Icon(Icons.question_mark),
+            onPressed: _info_about,
           ),
         ],
       ),
@@ -205,6 +209,39 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
           },
         ),
       ),
+    );
+  }
+
+  void _info_about() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        String url = '';
+        return AlertDialog(
+          title: Text('Информация о MemGen'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                  "Это конструктор для генерации картинок, позволяющий оперировать картинками и текстом.\n"
+                  "Для изменения текста нажмите на него или на соответствующую кнопку.\n"
+                  "Для изменения картинки нажмите на нее или на соответствующую кнопку.\n"
+                  "Картинку можно загрузить по ссылке из источника или из галереи."),
+              SizedBox(height: 10),
+              Text("© kateriina 2024"),
+            ],
+          ),
+          actions: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Закрыть'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
