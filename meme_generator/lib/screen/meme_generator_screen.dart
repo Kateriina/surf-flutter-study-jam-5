@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MemeGeneratorScreen extends StatefulWidget {
   const MemeGeneratorScreen({Key? key}) : super(key: key);
@@ -80,7 +81,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
   }
 
   // Метод для обмена полученным мемом
-  void _shareMeme() async {
+  void _shareMeme(img) async {
     Share.share(img);
   }
 
