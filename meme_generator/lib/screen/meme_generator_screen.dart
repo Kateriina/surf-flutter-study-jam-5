@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:screenshot/screenshot.dart';
 
 class MemeGeneratorScreen extends StatefulWidget {
   const MemeGeneratorScreen({Key? key}) : super(key: key);
@@ -13,6 +13,8 @@ class MemeGeneratorScreen extends StatefulWidget {
 }
 
 class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
+  final ScreenshotController screenshotController = ScreenshotController();
+
   String imageUrl =
       'https://i.cbc.ca/1.6713656.1679693029!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/this-is-fine.jpg';
 
@@ -78,8 +80,11 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
   }
 
   // Метод для обмена полученным мемом
-  void _shareMeme() {
-    Share.share(imageUrl);
+  void _shareMeme() async {
+    /*
+    final screenshot = await screenshotController.capture();
+
+    Share.shareFiles([screenshot], text: 'Проверьте этот мем!');*/
   }
 
   // Метод для редактирования текста мема
@@ -193,29 +198,43 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      GestureDetector(
-                        onTap: _pickImage,
-                        child: SizedBox(
-                          width: imageSize,
-                          height: imageSize,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.white,
-                                width: 2,
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: imageUrl.startsWith('http')
-                                  ? CachedNetworkImage(
-                                      imageUrl: imageUrl,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Image.file(
-                                      File(imageUrl),
-                                      fit: BoxFit.cover,
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: _pickImage,
+                          child: SizedBox(
+                            width: imageSize,
+                            height: imageSize,
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                return DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 2,
                                     ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: imageUrl.startsWith('http')
+                                        ? CachedNetworkImage(
+                                            imageUrl: imageUrl,
+                                            fit: BoxFit.contain,
+                                            width: constraints
+                                                .maxWidth, // Используем ширину родительского виджета
+                                            height: constraints
+                                                .maxHeight, // Используем высоту родительского виджета
+                                          )
+                                        : Image.file(
+                                            File(imageUrl),
+                                            fit: BoxFit.contain,
+                                            width: constraints
+                                                .minWidth, // Используем ширину родительского виджета
+                                            height: constraints
+                                                .minHeight, // Используем высоту родительского виджета
+                                          ),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -227,7 +246,7 @@ class _MemeGeneratorScreenState extends State<MemeGeneratorScreen> {
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontFamily: 'Impact',
-                            fontSize: 40,
+                            fontSize: 30,
                             color: Colors.white,
                           ),
                         ),
