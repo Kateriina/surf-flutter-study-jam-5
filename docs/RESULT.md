@@ -41,4 +41,28 @@ MemGen - это конструктор для генерации демотив�
 🔥 Адаптив под альбомную ориентацию - приложение корректно запускается и отображается в альбомной ориентации.
 
 ## Демонстрация работы
-  
+
+**Видео с озвучкой**
+
+https://github.com/Kateriina/surf-flutter-study-jam-5/assets/47224878/0d8e492d-25d2-4675-8a8a-bc444c76ff6d
+
+![**Скачать APK**](https://github.com/Kateriina/surf-flutter-study-jam-5/blob/main/docs/results/memgen.apk)
+
+**Скриншоты**
+<div class="row" align="center">
+  <img src="images/img_1_main_screen.jpg" width="375" alt="Главный экран" style="margin-right: 30px;" />
+  <img src="images/img_2_info_screen.jpg" width="375" alt="О приложении" style="margin-right: 30px;" />
+</div>
+<div class="row" align="center">
+  <img src="images/img_3_edit_text_screen.jpg" width="375" alt="Изменение текста" style="margin-right: 30px;" />
+  <img src="images/img_4_edit_img_screen.jpg" width="375" alt="Изменение картинки" style="margin-right: 30px;" />
+</div>
+<div class="row" align="center">
+  <img src="images/img_5_share_img_screen.jpg" width="375" alt="Поделиться изображением" style="margin-right: 30px;" />
+  <img src="images/img_6_big_text_screen.jpg" width="375" alt="Изменение размера области текста" style="margin-right: 30px;" />
+</div>
+<div class="row" align="center">
+  <img src="images/img_7_albom_screen.jpg" width="375" alt="Альбомная ориентация" style="margin-right: 30px;" />
+</div>
+
+
